@@ -18,7 +18,6 @@ import Navbar from './components/Navbar';
 import WithNav from './layouts/WithNav';
 
 const session = Cookies.get('auth.session')
-const is_admin = false
 
 function App() {
   return (  
@@ -27,6 +26,7 @@ function App() {
         <Routes>
           {/* { true && <Route path='*' element={<Navigate replace to="/"></Navigate>}></Route> } */}
           <Route exact path='/' element={<Login/>}></Route>
+          <Route exact path='*' element={<Notfound/>}></Route>
           <Route path='/' element={<WithNav/>}>
             <Route exact path='home' element={<Home/>}></Route>
             <Route exact path='page1' element={<Page1/>}></Route>
@@ -34,7 +34,6 @@ function App() {
               <Route path='' element={<AdminPage/>}></Route>
               <Route exact path='page2' element={<Page2/>}></Route>
             </Route> 
-            <Route exact path='*' element={<Notfound/>}></Route>
           </Route>
           
         </Routes>
