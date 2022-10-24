@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "../middleware/PrivateRoute";
 
 function Admin() {
     return (

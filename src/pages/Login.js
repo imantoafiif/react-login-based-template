@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Cookies from "js-cookie";
+import Guest from "../middleware/Guest";
 
 function Login() {
 
@@ -73,59 +74,62 @@ function Login() {
 
     return (
         <>
-            <section className="hero is-fullheight">
-                <div className="hero-body">
-                    <div className="container">
-                        <div className="columns is-centered">
-                            <div className="column is-5-tablet is-4-desktop is-3-widescreen">
-                                <form 
-                                    onSubmit={submit}
-                                    method="post"
-                                    action="" 
-                                    className="box">
-                                    <div className="field">
-                                        <label className="label">User</label>
-                                        <div className="control has-icons-left">
-                                            <input
-                                                value={user}  
-                                                onChange={e => setUser(e.target.value)}
-                                                className="input" required/>
-                                            <span className="icon is-small is-left">
-                                            <i className="fa fa-user"></i>
-                                            </span>
+            <Guest>
+                <section className="hero is-fullheight">
+                    <div className="hero-body">
+                        <div className="container">
+                            <div className="columns is-centered">
+                                <div className="column is-5-tablet is-4-desktop is-3-widescreen">
+                                    <form 
+                                        onSubmit={submit}
+                                        method="post"
+                                        action="" 
+                                        className="box">
+                                        <div className="field">
+                                            <label className="label">User</label>
+                                            <div className="control has-icons-left">
+                                                <input
+                                                    value={user}  
+                                                    onChange={e => setUser(e.target.value)}
+                                                    className="input" required/>
+                                                <span className="icon is-small is-left">
+                                                <i className="fa fa-user"></i>
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="field">
-                                        <label className="label">Password</label>
-                                        <div className="control has-icons-left">
-                                            <input 
-                                                value={password}
-                                                onChange={e => setPassword(e.target.value)}
-                                                type="password" className="input" required/>
-                                            <span className="icon is-small is-left">
-                                            <i className="fa fa-lock"></i>
-                                            </span>
+                                        <div className="field">
+                                            <label className="label">Password</label>
+                                            <div className="control has-icons-left">
+                                                <input 
+                                                    value={password}
+                                                    onChange={e => setPassword(e.target.value)}
+                                                    type="password" className="input" required/>
+                                                <span className="icon is-small is-left">
+                                                <i className="fa fa-lock"></i>
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    {/* <div className="field">
-                                        <label className="checkbox">
-                                            <input type="checkbox"/>
-                                            Remember me
-                                        </label>
-                                    </div> */}
-                                    <div className="field">
-                                        <button
-                                            disabled={isLoading} 
-                                            className={`button is-success ${isLoading ? 'is-loading' : ''}`}>
-                                            Login
-                                        </button>
-                                    </div>
-                                </form>
+                                        {/* <div className="field">
+                                            <label className="checkbox">
+                                                <input type="checkbox"/>
+                                                Remember me
+                                            </label>
+                                        </div> */}
+                                        <div className="field">
+                                            <button
+                                                disabled={isLoading} 
+                                                className={`button is-success ${isLoading ? 'is-loading' : ''}`}>
+                                                Login
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </Guest>
+            
         </>
     )
 }

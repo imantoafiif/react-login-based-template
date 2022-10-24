@@ -1,5 +1,5 @@
 import React from "react";
-import PrivateRoute from "../layouts/PrivateRoute";
+import PrivateRoute from "../middleware/PrivateRoute";
 import WithNav from "../layouts/WithNav";
 // import Admin from "../layouts/Admin";
 
