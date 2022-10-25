@@ -3,9 +3,13 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Cookies from "js-cookie";
 import Guest from "../middleware/Guest";
+import { userSlice, setSession } from '../store/slices/sessionSlice';
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
-
+    
+    const dispatch = useDispatch()
+    const userSelector = useSelector(userSlice)
     const navigate = useNavigate()
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
@@ -15,7 +19,7 @@ function Login() {
     //nembak 2 kali ?
     useEffect(() => {
         getListPositionAspiration()
-        console.log('process.env', process.env)
+        console.log('unle', userSelector)
     }, [])
 
     const getListPositionAspiration = () => {
@@ -60,6 +64,7 @@ function Login() {
                     let session = JSON.stringify(re.data.data)
                     console.log(session)
                     Cookies.set('auth.session', session, { expires: 1 })
+                    dispatch(setSession(re.data.data))
                     navigate('/home')
                 })
                 // localStorage.setItem('token', r.data.access_token)

@@ -4,13 +4,19 @@ export const sessionSlice = createSlice({
     name: 'session',
     initialState: {
         user: null,
+        counter: 0,
     },
     reducers: {
-        setSession: (state, session) => {
-            state.user = session
+        setSession: (state, action) => {
+            state.user = action.payload
+        },
+        increment: state => {
+            state.counter += 1
         }
     }
 })
 
-export const { setSession } = sessionSlice.actions
+export const { setSession, increment } = sessionSlice.actions
+export const userSlice = state => state.user.user
+export const counterSlice = state => state.user.counter
 export default sessionSlice.reducer

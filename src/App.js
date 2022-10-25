@@ -35,9 +35,8 @@ function App() {
               <Route exact path='page2' element={<Page2/>}></Route>
             </Route> 
           </Route>
-          
         </Routes>
-    </Router>
+     </Router>
     </>
     
   );
