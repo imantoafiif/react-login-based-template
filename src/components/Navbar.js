@@ -15,6 +15,7 @@ function Navbar() {
     function logout() {
         Cookies.remove('auth.token')
         Cookies.remove('auth.session')
+        localStorage.removeItem('persist:root')
         navigate('/')
     }
 

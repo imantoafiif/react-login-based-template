@@ -9,7 +9,6 @@ import Cookies from 'js-cookie';
 import { Provider } from 'react-redux';
 import { store, persistor } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import { getApplicationID } from './helper';
 
 axios.defaults.baseURL = `${process.env.REACT_APP_API_BASE_URL}`
 

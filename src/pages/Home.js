@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Home() {
    
-    const session = Cookies.get('auth.session')
-    const user = session ? JSON.parse(session) : session
     const dispatch = useDispatch()
     const userSession = useSelector(state => state.user.user)
 
@@ -25,7 +23,7 @@ function Home() {
                         style={{width: '100%'}}
                         className="">
                     <p className="title">
-                        Welcome, { user && <span>{user.username}</span> } 
+                        Welcome, { userSession?.username }
                     </p>
                     <p className="subtitle">
                         This is home
