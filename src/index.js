@@ -7,7 +7,9 @@ import axios from 'axios';
 import 'bulma/css/bulma.min.css';
 import Cookies from 'js-cookie';
 import { Provider } from 'react-redux';
-import store from './store/store';
+import { store, persistor } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { getApplicationID } from './helper';
 
 axios.defaults.baseURL = `${process.env.REACT_APP_API_BASE_URL}`
 
@@ -29,7 +31,9 @@ axios.interceptors.request.use(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <App/>
+    <PersistGate loading={null} persistor={persistor}>
+      <App/>
+    </PersistGate>
   </Provider>
   // <React.StrictMode>
   //   <App />
