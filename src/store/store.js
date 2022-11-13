@@ -13,8 +13,8 @@ const persistedSession = persistReducer(persistConfig, sessionReducer)
 
 export const store = configureStore({
     reducer: {
-        user: persistedSession,
+        user: sessionReducer,
     }
 })
 
-export const persistor = persistStore(store)
+export default store;

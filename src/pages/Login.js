@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import Cookies from "js-cookie";
 import Guest from "../middleware/Guest";
 import { userSlice, setSession } from '../store/slices/sessionSlice';
 import { useDispatch, useSelector } from "react-redux";
+import axios from "../axios-config";
+
 
 function Login() {
     
@@ -42,7 +43,6 @@ function Login() {
     const submit = (e) => {
         e.preventDefault()
         setLoading(true)
-        Cookies.remove('auth.token')
         Cookies.remove('auth.session')
         axios.post('/ldap/api/auth/login', {
             application_id: process.env.REACT_APP_ID,
@@ -53,8 +53,9 @@ function Login() {
             // setLoading(false)
             if(r.data) {
                 Cookies.set('auth.token', r.data.access_token, { expires: 1 })
+                localStorage.setItem('auth.token', r.data.access_token)
                 console.log(Cookies.get('auth.token'))
-                axios.get(`/ldap/api/auth/account`, {
+                axios.get(`/ldap/api/auth/config-account`, {
                     params: {
                         include: 'user_role,role_buscd,role_pernr,avatar,notification,personal,position'
                     }
@@ -62,8 +63,8 @@ function Login() {
                 .then(re => {
                     console.log('cuk', re)
                     let session = JSON.stringify(re.data.data)
-                    console.log(session)
-                    Cookies.set('auth.session', session, { expires: 1 })
+                    // Cookies.set('auth.session', session, { expires: 1 })
+                    localStorage.setItem('auth.session', session)
                     dispatch(setSession(re.data.data))
                     navigate('/home')
                 })

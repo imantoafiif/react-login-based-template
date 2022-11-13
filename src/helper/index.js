@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 const getBusinessCode = () => {
     return process.env.REACT_APP_BUSCD
@@ -12,8 +13,14 @@ const getApplicationID = () => {
     return process.env.REACT_APP_ID
 }
 
+const getSession = () => {
+    let session = localStorage.getItem('auth.session')
+    return JSON.parse(session)
+}
+
 export { 
     getBusinessCode, 
     todayDate,
     getApplicationID,
+    getSession,
 }

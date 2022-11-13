@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 
 const Guest = (props) => {
 
-    const session = Cookies.get('auth.session')
+    const session = Cookies.get('auth.token')
     console.log(props.location)
 
     return (

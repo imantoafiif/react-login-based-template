@@ -3,36 +3,35 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import axios from 'axios';
 import 'bulma/css/bulma.min.css';
 import Cookies from 'js-cookie';
 import { Provider } from 'react-redux';
-import { store, persistor } from './store/store';
+import { store } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
-axios.defaults.baseURL = `${process.env.REACT_APP_API_BASE_URL}`
+// axios.defaults.baseURL = `${process.env.REACT_APP_API_BASE_URL}`
 
-axios.interceptors.request.use(
-  async config => {
-    const token = Cookies.get(`auth.token`)
-    config.headers = {
-      Authorization: (token ? `Bearer ${token}` : null),
-      Accept: 'application/json',
-    }
-    return config
-  },
-  error => {
-    Promise.reject(error)
-    alert('token expired')
-  }
-)
+// axios.interceptors.request.use(
+//   async config => {
+//     const token = Cookies.get(`auth.token`)
+//     config.headers = {
+//       Authorization: (token ? `Bearer ${token}` : null),
+//       Accept: 'application/json',
+//     }
+//     return config
+//   },
+//   error => {
+//     Promise.reject(error)
+//     alert('token expired')
+//   }
+// )
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    {/* <PersistGate loading={null} persistor={persistor}> */}
       <App/>
-    </PersistGate>
+    {/* </PersistGate> */}
   </Provider>
   // <React.StrictMode>
   //   <App />

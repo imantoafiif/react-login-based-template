@@ -13,11 +13,7 @@ import Page2 from './pages/Page2';
 import AdminPage from './pages/AdminPage';
 import Admin from './layouts/Admin';
 import Notfound from './pages/Notfound';
-import Cookies from 'js-cookie';
-import Navbar from './components/Navbar';
 import WithNav from './layouts/WithNav';
-
-const session = Cookies.get('auth.session')
 
 function App() {
   return (  
