@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ color }) {
 
     const navigate = useNavigate()
     const menus = [
@@ -22,7 +22,7 @@ function Navbar() {
     return (
         <>
             <nav
-                style={{borderBottom: '1px solid #d3d3d3'}} 
+                style={{borderBottom: '1px solid #d3d3d3', background: `${color}`}} 
                 className="navbar is-transparent is-fixed-top">
                 <div className="navbar-brand">
                     <a 
@@ -42,6 +42,7 @@ function Navbar() {
                     {
                         menus.map((item, key) => 
                             (<Link
+                                style={{color: 'white'}}
                                 key={key}
                                 to={item.url}
                                 className="navbar-item">

@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useContext, useRef } from "react";
 import PrivateRoute from "../middleware/PrivateRoute";
-import WithNav from "../layouts/WithNav";
+import WithNav, { Theme } from "../layouts/WithNav";
 // import Admin from "../layouts/Admin";
 
 function Page1() {
+    const theme = useContext(Theme)
+    
+    const change = () => {
+        theme.changeTheme(inputref.current.value)
+        console.log(inputref.current.value)
+    }
+
+    const inputref = useRef()
+
     return (
        <>
        <PrivateRoute>
@@ -12,12 +21,18 @@ function Page1() {
                     <div 
                         style={{width: '100%'}}
                         className="">
-                    <p className="title">
-                        Page 1
-                    </p>
-                    <p className="subtitle">
-                        This is page 1
-                    </p>
+                    <div style={{marginBottom: '12px;'}}>
+                        <input
+                            ref={inputref} 
+                            class="input"/>
+                    </div>
+                    <div>
+                        <button
+                            onClick={change}
+                            class="button">
+                            change
+                        </button>
+                    </div>
                     </div>
                 </div>
             </section>

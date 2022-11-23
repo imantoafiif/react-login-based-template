@@ -1,14 +1,64 @@
-import React from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import axios from "../axios-config";
 import Navbar from "../components/Navbar";
+import { getBusinessCode } from "../helper";
+
+export const Theme = createContext()
 
 function WithNav(props) {
+
+    // var store = {
+    //     data: {
+    //         color_theme: '#fff',
+    //     },
+    //     changeTheme: (c) => {
+    //         store.data.color_theme = c;
+    //     },
+    // }
+
+    const [store, setStore] = useState({
+        data: {
+            color_theme: '#fff',
+        },
+        changeTheme: c => {
+            setStore(prevstate => ({
+                ...prevstate,
+                data: {
+                    ...prevstate.data,
+                    color_theme: c,
+                }
+            }))
+        }
+    })
+
+    useEffect(() => {
+        axios.get(`/ldap/api/setting`, {
+            params: {
+                business_code: getBusinessCode()
+            }
+        })
+        .then(r => {
+            console.log(r)
+            setStore(prevstate => ({
+                ...prevstate,
+                data: {
+                    ...prevstate.data,
+                    ...r.data.data
+                }
+            }))
+        })
+    }, [])
+
+    useEffect(() => {
+        console.log('coy', store)
+    }, [store])
+
     return (
-        <>
-            <Navbar></Navbar>
+        <Theme.Provider value={store}>
+            <Navbar color={store.data.color_theme}/>
             <Outlet/>
-            {/* {props.children} */}
-        </>
+        </Theme.Provider>
         
     )
 }
