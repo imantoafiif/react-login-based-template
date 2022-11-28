@@ -6,6 +6,7 @@ import checkvalidity from '../helper/check-validity'
 const PrivateRoute = (props) => {
 
     const session = localStorage.getItem('auth.token')
+    
     if(session &&!checkvalidity(session)) {
         localStorage.removeItem('auth.token')
     }

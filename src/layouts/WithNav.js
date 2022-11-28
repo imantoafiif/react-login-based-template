@@ -6,16 +6,7 @@ import { getBusinessCode } from "../helper";
 
 export const Theme = createContext()
 
-function WithNav(props) {
-
-    // var store = {
-    //     data: {
-    //         color_theme: '#fff',
-    //     },
-    //     changeTheme: (c) => {
-    //         store.data.color_theme = c;
-    //     },
-    // }
+function WithNav() {
 
     const [store, setStore] = useState({
         data: {

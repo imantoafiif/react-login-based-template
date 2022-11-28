@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -8,29 +8,13 @@ import Cookies from 'js-cookie';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
-
-// axios.defaults.baseURL = `${process.env.REACT_APP_API_BASE_URL}`
-
-// axios.interceptors.request.use(
-//   async config => {
-//     const token = Cookies.get(`auth.token`)
-//     config.headers = {
-//       Authorization: (token ? `Bearer ${token}` : null),
-//       Accept: 'application/json',
-//     }
-//     return config
-//   },
-//   error => {
-//     Promise.reject(error)
-//     alert('token expired')
-//   }
-// )
+import initAccount, { Account } from './user-account';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
+    <App/>
     {/* <PersistGate loading={null} persistor={persistor}> */}
-      <App/>
     {/* </PersistGate> */}
   </Provider>
   // <React.StrictMode>

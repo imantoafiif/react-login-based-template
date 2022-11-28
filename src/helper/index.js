@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { useSelector } from 'react-redux';
 
 const getBusinessCode = () => {
     return process.env.REACT_APP_BUSCD
