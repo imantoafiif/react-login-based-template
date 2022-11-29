@@ -20,11 +20,31 @@ function App() {
   
   // const account = initAccount()
 
-  const [account, setAccount] = useState(null)
+  const [account, setAccount] = useState({
+    user: null,
+    set: data => {
+      setAccount(state => ({
+        ...state,
+        user: data,
+      }))
+    }
+  })
+  const [test, setTest] = useState({
+    a: 1,
+    b: 2,
+  })
 
   useEffect(() => {
     initAccount(setAccount)
+    setTest(state => ({
+      ...state,
+      b: 3,
+    }))
   }, [])
+
+  useEffect(() => {
+    console.log('test', test)
+  }, [test])
 
   return (  
     <AccountProvider.Provider value={account}>

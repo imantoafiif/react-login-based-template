@@ -17,6 +17,10 @@ function Home() {
 
     // console.log('aslkdasd', getSession())
 
+    useEffect(() => {
+        console.log('and i could be long', user)
+    }, [user])
+
     return (
        <>
         {/* <Default    
@@ -28,7 +32,7 @@ function Home() {
                         style={{width: '100%'}}
                         className="">
                     <img
-                        src={user?.avatar.avatar}
+                        src={user.user?.avatar.avatar}
                         onError={e => {
                             e.target.onerror = null
                             e.target.src = '/img/user_avatar.png'
@@ -36,7 +40,7 @@ function Home() {
                         style={{borderRadius: '50%', width: '150px', height: '150px', objectFit: 'cover', objectPosition: 'top', marginBottom: '15px'}}>
                     </img>
                     <p className="title">
-                        Welcome, { user?.personal.complete_name } <br/>
+                        Welcome, { user.user?.personal.complete_name } <br/>
                     </p>
                     <p className="subtitle">
                         {/* { session.username } */}

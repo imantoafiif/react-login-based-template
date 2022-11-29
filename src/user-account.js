@@ -12,9 +12,12 @@ const initAccount = setAccount => {
     })
     .then(r => {
         if(r.data.message === 'unauthenticated') {
-            return setAccount(null)
+            return
         }
-        return setAccount(r.data.data)
+        return setAccount(state => ({
+            ...state, 
+            user: r.data.data
+        }))
     })
     .catch(e => {
         console.log(e)

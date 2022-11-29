@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Guest from "../middleware/Guest";
 import { userSlice, setSession } from '../store/slices/sessionSlice';
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../axios-config";
+import { AccountProvider } from "../user-account";
 
 
 function Login() {
@@ -14,12 +15,13 @@ function Login() {
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setLoading] = useState(false)
+    const account = useContext(AccountProvider)
     var careerPositionAspiration = null;
 
     //nembak 2 kali ?
     useEffect(() => {
         getListPositionAspiration()
-        console.log('unle', userSelector)
+        console.log('unle', account)
     }, [])
 
     const getListPositionAspiration = () => {
@@ -51,7 +53,7 @@ function Login() {
             // setLoading(false)
             if(r.data) {
                 localStorage.setItem('auth.token', r.data.access_token)
-                axios.get(`/ldap/api/auth/config-account`, {
+                axios.get(`/ldap/api/auth/account`, {
                     params: {
                         include: 'user_role,role_buscd,role_pernr,avatar,notification,personal,position'
                     }
@@ -61,6 +63,8 @@ function Login() {
                     // let session = JSON.stringify(re.data.data)
                     // localStorage.setItem('auth.session', session)
                     dispatch(setSession(re.data.data))
+                    account.set(re.data.data)
+                    console.log('mboke', account)
                     navigate('/home')
                 })
                 // localStorage.setItem('token', r.data.access_token)
