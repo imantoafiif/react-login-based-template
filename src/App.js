@@ -2,8 +2,6 @@ import {
   BrowserRouter as Router, 
   Routes, 
   Route,
-  Outlet,
-  Navigate,
 } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login'
