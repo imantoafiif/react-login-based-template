@@ -1,10 +1,9 @@
-import Cookies from 'js-cookie'
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
 const Guest = (props) => {
 
-    const session = Cookies.get('auth.token')
+    const session = localStorage.getItem('auth.token')
     console.log(props.location)
 
     return (

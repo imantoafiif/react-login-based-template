@@ -14,10 +14,22 @@ import AdminPage from './pages/AdminPage';
 import Admin from './layouts/Admin';
 import Notfound from './pages/Notfound';
 import WithNav from './layouts/WithNav';
+import initAccount, { AccountProvider } from './user-account';
+import { createContext, useContext, useEffect, useState } from 'react';
+import axios from "./axios-config"
 
 function App() {
+  
+  // const account = initAccount()
+
+  const [account, setAccount] = useState(null)
+
+  useEffect(() => {
+    initAccount(setAccount)
+  }, [])
+
   return (  
-    <>  
+    <AccountProvider.Provider value={account}>
       <Router>
         <Routes>
           {/* { true && <Route path='*' element={<Navigate replace to="/"></Navigate>}></Route> } */}
@@ -32,9 +44,8 @@ function App() {
             </Route> 
           </Route>
         </Routes>
-     </Router>
-    </>
-    
+      </Router>
+    </AccountProvider.Provider>
   );
 }
 

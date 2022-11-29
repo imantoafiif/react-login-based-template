@@ -14,7 +14,8 @@ const getApplicationID = () => {
 
 const getSession = () => {
     let session = localStorage.getItem('auth.session')
-    return JSON.parse(session)
+    if(session) return JSON.parse(session)
+    return null
 }
 
 export { 

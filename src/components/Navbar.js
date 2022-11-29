@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -13,9 +12,7 @@ function Navbar({ color }) {
     ]
 
     function logout() {
-        Cookies.remove('auth.token')
-        Cookies.remove('auth.session')
-        localStorage.removeItem('persist:root')
+        localStorage.removeItem('auth.token')
         navigate('/')
     }
 

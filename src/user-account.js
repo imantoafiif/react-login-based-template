@@ -1,9 +1,9 @@
-import { createContext } from "react"
+import { createContext, useContext } from "react"
 import axios from "./axios-config"
 
-export const Account = createContext()
+export const AccountProvider = createContext()
 
-const initAccount = () => {
+const initAccount = setAccount => {
 
     axios.get(`/ldap/api/auth/account`, {
         params: {
@@ -12,9 +12,9 @@ const initAccount = () => {
     })
     .then(r => {
         if(r.data.message === 'unauthenticated') {
-            return null
+            return setAccount(null)
         }
-        return r.data.data
+        return setAccount(r.data.data)
     })
     .catch(e => {
         console.log(e)

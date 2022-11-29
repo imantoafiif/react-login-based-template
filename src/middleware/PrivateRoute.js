@@ -1,23 +1,21 @@
-import Cookies from 'js-cookie'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import checkvalidity from '../helper/check-validity'
+import { AccountProvider } from '../user-account'
 
-const PrivateRoute = (props) => {
+const PrivateRoute = props => {
 
+    const account = useContext(AccountProvider)
     const session = localStorage.getItem('auth.token')
-    
-    if(session &&!checkvalidity(session)) {
+
+    if(!checkvalidity(session)) {
         localStorage.removeItem('auth.token')
+        return <Navigate to='/'></Navigate>
     }
 
     return (
         <>
-            {
-                session != undefined ? 
-                props.children :
-                <Navigate to='/'></Navigate>
-            }
+            { props.children }
         </>
     )
 }
