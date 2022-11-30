@@ -24,8 +24,8 @@ function Login() {
         let uname = localStorage.getItem('auth.user')
         let pass = localStorage.getItem('auth.pass')
         if(uname && pass) {
-            setUser(CryptoJS.AES.decrypt(uname, 'secret').toString(CryptoJS.enc.Utf8))
-            setPassword(CryptoJS.AES.decrypt(pass, 'secret').toString(CryptoJS.enc.Utf8))
+            setUser(CryptoJS.AES.decrypt(uname, 'I!OJ1n4!Nl$cmtv5aB^KK3xV5jNlB72RYSg7OrmoyCBmFpfpmF').toString(CryptoJS.enc.Utf8))
+            setPassword(CryptoJS.AES.decrypt(pass, 'I!OJ1n4!Nl$cmtv5aB^KK3xV5jNlB72RYSg7OrmoyCBmFpfpmF').toString(CryptoJS.enc.Utf8))
             setRemember(true)
         }
     }, [])
@@ -44,8 +44,8 @@ function Login() {
         }
         
         if(remember) {
-            localStorage.setItem('auth.user', CryptoJS.AES.encrypt(user, 'secret'))
-            localStorage.setItem('auth.pass', CryptoJS.AES.encrypt(password, 'secret'))
+            localStorage.setItem('auth.user', CryptoJS.AES.encrypt(user, 'I!OJ1n4!Nl$cmtv5aB^KK3xV5jNlB72RYSg7OrmoyCBmFpfpmF'))
+            localStorage.setItem('auth.pass', CryptoJS.AES.encrypt(password, 'I!OJ1n4!Nl$cmtv5aB^KK3xV5jNlB72RYSg7OrmoyCBmFpfpmF'))
         }
 
         axios.post('/ldap/api/auth/login', {
