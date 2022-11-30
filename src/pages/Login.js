@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import Guest from "../middleware/Guest";
 import { userSlice, setSession } from '../store/slices/sessionSlice';
 import { useDispatch, useSelector } from "react-redux";
@@ -15,14 +15,36 @@ function Login() {
     const [user, setUser] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setLoading] = useState(false)
+    const [remember, setRemember] = useState(false)
     const account = useContext(AccountProvider)
     var careerPositionAspiration = null;
 
-    //nembak 2 kali ?
+    useEffect(() => {
+        let uname = localStorage.getItem('auth.user')
+        let pass = localStorage.getItem('auth.pass')
+        setUser(uname)
+        setPassword(pass)
+        setRemember(uname && pass)
+    }, [])
 
     const submit = (e) => {
+        console.log('remember', remember)
         e.preventDefault()
         setLoading(true)
+
+        let uname = localStorage.getItem('auth.user')
+        let pass = localStorage.getItem('auth.pass')
+
+        if(uname && pass && !remember) {
+            localStorage.removeItem('auth.user')
+            localStorage.removeItem('auth.pass')
+        }
+        
+        if(remember) {
+            localStorage.setItem('auth.user', user)
+            localStorage.setItem('auth.pass', password)
+        }
+
         axios.post('/ldap/api/auth/login', {
             application_id: process.env.REACT_APP_ID,
             password,
@@ -93,12 +115,15 @@ function Login() {
                                                 </span>
                                             </div>
                                         </div>
-                                        {/* <div className="field">
+                                        <div className="field">
                                             <label className="checkbox">
-                                                <input type="checkbox"/>
+                                                <input
+                                                    defaultChecked={remember}
+                                                    onChange={e => setRemember(e.target.checked)}
+                                                    type="checkbox"/>
                                                 Remember me
                                             </label>
-                                        </div> */}
+                                        </div>
                                         <div className="field">
                                             <button
                                                 disabled={isLoading} 
