@@ -13,7 +13,7 @@ function Navbar({ color }) {
 
     function logout() {
         localStorage.removeItem('auth.token')
-        navigate('/')
+        navigate('/login')
     }
 
     return (

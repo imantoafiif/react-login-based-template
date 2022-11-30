@@ -2,6 +2,7 @@ import {
   BrowserRouter as Router, 
   Routes, 
   Route,
+  Navigate,
 } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login'
@@ -51,8 +52,15 @@ function App() {
       <Router>
         <Routes>
           {/* { true && <Route path='*' element={<Navigate replace to="/"></Navigate>}></Route> } */}
-          <Route exact path='/' element={<Login/>}></Route>
           <Route exact path='*' element={<Notfound/>}></Route>
+          <Route exact path='/login' element={<Login/>}></Route>
+          <Route exact path='' 
+            element={
+              account.user ?                 
+              <Home/> : 
+              <Navigate to='/login'></Navigate>
+            }>
+          </Route>
           <Route path='/' element={<WithNav/>}>
             <Route exact path='home' element={<Home/>}></Route>
             <Route exact path='page1' element={<Page1/>}></Route>

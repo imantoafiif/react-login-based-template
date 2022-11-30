@@ -10,7 +10,7 @@ const PrivateRoute = props => {
 
     if(!checkvalidity(session)) {
         localStorage.removeItem('auth.token')
-        return <Navigate to='/'></Navigate>
+        return <Navigate to='/login'></Navigate>
     }
 
     return (
