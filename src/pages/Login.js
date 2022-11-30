@@ -118,7 +118,7 @@ function Login() {
                                         <div className="field">
                                             <label className="checkbox">
                                                 <input
-                                                    defaultChecked={remember}
+                                                    checked={remember}
                                                     onChange={e => setRemember(e.target.checked)}
                                                     type="checkbox"/>
                                                 Remember me
