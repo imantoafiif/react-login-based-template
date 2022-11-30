@@ -23,9 +23,11 @@ function Login() {
     useEffect(() => {
         let uname = localStorage.getItem('auth.user')
         let pass = localStorage.getItem('auth.pass')
-        setUser(CryptoJS.AES.decrypt(uname, 'secret').toString(CryptoJS.enc.Utf8))
-        setPassword(CryptoJS.AES.decrypt(pass, 'secret').toString(CryptoJS.enc.Utf8))
-        setRemember(uname && pass)
+        if(uname && pass) {
+            setUser(CryptoJS.AES.decrypt(uname, 'secret').toString(CryptoJS.enc.Utf8))
+            setPassword(CryptoJS.AES.decrypt(pass, 'secret').toString(CryptoJS.enc.Utf8))
+            setRemember(true)
+        }
     }, [])
 
     const submit = (e) => {
