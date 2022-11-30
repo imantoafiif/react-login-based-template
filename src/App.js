@@ -57,7 +57,7 @@ function App() {
           <Route exact path='' 
             element={
               account.user ?                 
-              <Home/> : 
+              <Navigate to='/home'></Navigate> : 
               <Navigate to='/login'></Navigate>
             }>
           </Route>
