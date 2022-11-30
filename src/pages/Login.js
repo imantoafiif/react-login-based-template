@@ -18,8 +18,8 @@ function Login() {
     const [isLoading, setLoading] = useState(false)
     const [remember, setRemember] = useState(false)
     const account = useContext(AccountProvider)
+    const secret = 'I!OJ1n4!Nl$cmtv5aB^KK3xV5jNlB72RYSg7OrmoyCBmFpfpmF'
     var careerPositionAspiration = null;
-    var secret = 'I!OJ1n4!Nl$cmtv5aB^KK3xV5jNlB72RYSg7OrmoyCBmFpfpmF'
 
     useEffect(() => {
         let uname = localStorage.getItem('auth.user')
