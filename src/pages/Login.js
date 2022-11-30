@@ -5,6 +5,7 @@ import { userSlice, setSession } from '../store/slices/sessionSlice';
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../axios-config";
 import { AccountProvider } from "../user-account";
+import CryptoJS  from "crypto-js";
 
 
 function Login() {
@@ -22,8 +23,8 @@ function Login() {
     useEffect(() => {
         let uname = localStorage.getItem('auth.user')
         let pass = localStorage.getItem('auth.pass')
-        setUser(uname)
-        setPassword(pass)
+        setUser(CryptoJS.AES.decrypt(uname, 'secret').toString(CryptoJS.enc.Utf8))
+        setPassword(CryptoJS.AES.decrypt(pass, 'secret').toString(CryptoJS.enc.Utf8))
         setRemember(uname && pass)
     }, [])
 
@@ -41,8 +42,8 @@ function Login() {
         }
         
         if(remember) {
-            localStorage.setItem('auth.user', user)
-            localStorage.setItem('auth.pass', password)
+            localStorage.setItem('auth.user', CryptoJS.AES.encrypt(user, 'secret'))
+            localStorage.setItem('auth.pass', CryptoJS.AES.encrypt(password, 'secret'))
         }
 
         axios.post('/ldap/api/auth/login', {
