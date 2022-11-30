@@ -30,22 +30,11 @@ function App() {
       }))
     }
   })
-  const [test, setTest] = useState({
-    a: 1,
-    b: 2,
-  })
 
   useEffect(() => {
+    if(window.location.pathname === '/login') return
     initAccount(setAccount)
-    setTest(state => ({
-      ...state,
-      b: 3,
-    }))
   }, [])
-
-  useEffect(() => {
-    console.log('test', test)
-  }, [test])
 
   return (  
     <AccountProvider.Provider value={account}>

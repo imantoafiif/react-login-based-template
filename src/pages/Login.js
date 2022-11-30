@@ -19,27 +19,6 @@ function Login() {
     var careerPositionAspiration = null;
 
     //nembak 2 kali ?
-    useEffect(() => {
-        getListPositionAspiration()
-        console.log('unle', account)
-    }, [])
-
-    const getListPositionAspiration = () => {
-        axios.get('/ldap/api/career/list-position-aspiration', {
-            params: {
-                personnel_number: '049.01.00',
-                per_page: 20,
-            }
-        })
-        .then(r => {
-            if(Array.isArray(r.data.data) && r.data.data.length) {
-                careerPositionAspiration = r.data.data
-            } 
-        })
-        .catch(e => {
-            console.log(e)
-        })
-    }
 
     const submit = (e) => {
         e.preventDefault()
