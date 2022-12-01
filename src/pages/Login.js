@@ -18,7 +18,7 @@ function Login() {
     const [isLoading, setLoading] = useState(false)
     const [remember, setRemember] = useState(false)
     const account = useContext(AccountProvider)
-    const secret = 'I!OJ1n4!Nl$cmtv5aB^KK3xV5jNlB72RYSg7OrmoyCBmFpfpmF'
+    const secret = `I!OJ1n4!Nl$cmtv5aB^KK3xV5jNlB72RYSg7OrmoyCBmFpfpmFeZ51LsQ%.VNrNE>uw<P>rnJn6^1!$k>3>TPg'q(B~TBPvRH8/i(s$ucgz+/+e!|`
     var careerPositionAspiration = null;
 
     useEffect(() => {
