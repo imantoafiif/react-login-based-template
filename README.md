@@ -1,4 +1,4 @@
-# Template React App with Login
+# React app template with Login
 
 # Getting Started with Create React App
 
